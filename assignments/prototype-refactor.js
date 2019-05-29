@@ -22,10 +22,10 @@ Prototype Refactor
 */
 
 class GameObject {
-    constructor(createdAt, name, dimensions) {
-        this.createdAt = createdAt;
-        this.name = name;
-        this.dimensions = dimensions;
+    constructor(obj) {
+        this.createdAt = obj.createdAt;
+        this.name = obj.name;
+        this.dimensions = obj.dimensions;
     }
 
     destroy() {
@@ -41,9 +41,9 @@ class GameObject {
 */
 
 class CharacterStats extends GameObject {
-    constructor(createdAt, name, dimensions, healthPoints) {
-        super(createdAt, name, dimensions);
-        this.healthPoints = healthPoints;
+    constructor(obj) {
+        super(obj);
+        this.healthPoints = obj.healthPoints;
     }
 
     takeDamage() {
@@ -51,14 +51,6 @@ class CharacterStats extends GameObject {
     }
 }
 
-// const gameCharStat = new CharacterStats({
-//     createdAt: "steam",
-//     name: "Stardew Valley",
-//     dimensions: "10px",
-//     healthPoints: 100
-// });
-
-// console.log(gameCharStat)
 
 /*
   === Humanoid (Having an appearance or character resembling that of a human.) ===
@@ -85,17 +77,18 @@ class CharacterStats extends GameObject {
 // }
 
 class Humanoid extends CharacterStats {
-    constructor(createdAt, name, dimensions, healthPoints, team, weapons,language) {
-        super(createdAt, name, dimensions, healthPoints);
-        this.team = team;
-        this.weapons = weapons;
-        this.language = language;
+    constructor(obj) {
+        super(obj);
+        this.team = obj.team;
+        this.weapons = obj.weapons;
+        this.language = obj.language;
     }
 
-    greet(){
+    greet() {
         return `${this.name} offers a greeting in ${this.language}`;
     }
 }
+
 
 
 /*
