@@ -118,6 +118,8 @@ console.log(pm)
 
 // function test for instructor test
 console.log(instructor.grade(student, "react"));
+console.log(instructor.calculateGrade(student));
+
 
 // function test for student
 student.listSubjects()
