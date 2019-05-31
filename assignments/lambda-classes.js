@@ -39,7 +39,7 @@ class Instructor extends Person {
     }
 
     calculateGrade(student) {
-        for (let i = 0; i < 7; i++) {
+        for (let i = 0; i < 5; i++) {
             student.grade += Math.random() * 20;
         }
         return student.grade;
@@ -81,12 +81,16 @@ class Student extends Person {
         return `${this.name} has begun sprint challenge on ${subject}`;
     }
 
-    graduate() {
+    graduate(instructor, student) {
         let grade;
         if (this.grade > 70) {
             grade = "pass"
         } else {
-            grade = "fail";
+            while (student.grade < 70) {
+                instructor.calculateGrade(student);
+                grade = student.graduate(instructor, student);
+                console.log(`Regraded ${student.name}: ${this.grade}`);
+            }
         }
 
         return grade;
@@ -144,7 +148,7 @@ console.log(student)
 // function test for student
 student.listSubjects()
 console.log(student.sprintChallenge());
-console.log(student.graduate());
+console.log(student.graduate(instructor, student));
 // function test for pm
 console.log(pm.standUp("some channel"));
 console.log(pm.debugCode(student, "react"));
