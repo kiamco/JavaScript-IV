@@ -37,13 +37,6 @@ class Instructor extends Person {
     grade(student, subject) {
         return `${student.name} recieves a perfect score on ${subject}`
     }
-
-    calculateGrade(student) {
-        for (let i = 0; i < 5; i++) {
-            student.grade += Math.random() * 20;
-        }
-        return student.grade;
-    }
 }
 
 // class Instrucotr test
@@ -64,7 +57,6 @@ class Student extends Person {
         this.previousBackground = obj.previousBackground;
         this.className = obj.className;
         this.favSubjects = obj.favSubjects;
-        this.grade = obj.grade;
     }
 
     listSubjects() {
@@ -80,21 +72,6 @@ class Student extends Person {
     sprintChallenge(subject) {
         return `${this.name} has begun sprint challenge on ${subject}`;
     }
-
-    graduate(instructor, student) {
-        let grade;
-        if (this.grade > 70) {
-            grade = "pass"
-        } else {
-            while (student.grade < 70) {
-                instructor.calculateGrade(student);
-                grade = student.graduate(instructor, student);
-                console.log(`Regraded ${student.name}: ${this.grade}`);
-            }
-        }
-
-        return grade;
-    }
 }
 
 // class student test
@@ -104,8 +81,7 @@ const student = new Student({
     location: "San Mateo",
     previousBackground: "CS",
     className: "webpt7",
-    favSubjects: ["js", "react, data structures and algorithms"],
-    grade: 0
+    favSubjects: ["js", "react, data structures and algorithms"]
 });
 
 console.log(student)
@@ -143,12 +119,12 @@ console.log(pm)
 // function test for instructor test
 console.log(instructor.grade(student, "react"));
 console.log(instructor.calculateGrade(student));
-console.log(student)
+
 
 // function test for student
 student.listSubjects()
 console.log(student.sprintChallenge());
-console.log(student.graduate(instructor, student));
+
 // function test for pm
 console.log(pm.standUp("some channel"));
 console.log(pm.debugCode(student, "react"));
